@@ -5,11 +5,12 @@ services:
   landlorater:
     container_name: landlorater
     volumes:
-      - '../landlorater.io:/usr/src/app'
+      - '/docker/letsencrypt-docker-nginx/src/landlorater.io:/usr/src/app'
       - '/usr/src/app/node_modules'
     build:
       context: .
       dockerfile: Dockerfile
+
     ports:
       - '3000:3000'
     environment:
