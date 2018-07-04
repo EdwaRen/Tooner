@@ -2,6 +2,19 @@ version: '3.1'
 
 services:
 
+  landlorater:
+    container_name: landlorater
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '../landlorater.io:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+
   letsencrypt-nginx-container:
     container_name: 'letsencrypt-nginx-container'
     image: nginx:latest
@@ -12,6 +25,8 @@ services:
       - ./letsencrypt-site:/usr/share/nginx/html
     networks:
       - docker-network
+
+
 
 networks:
   docker-network:
